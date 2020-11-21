@@ -43,8 +43,8 @@ module.exports = {
     },
 
     deleteHistory: (req, res) => {
-        const uid_user = req.params.uid_user;
-        deleteHistory(uid_user, (err, results) => {
+        const body = req.body
+        deleteHistory(body, (err, results) => {
             if (err) {
                 console.log(err);
                 return res.json({

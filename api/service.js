@@ -3,10 +3,11 @@ const pool = mssql.pool;
 mssql.poolConnection;
 
 module.exports = {
-    deleteHistory: async (uid_user, callBack) => {
+    deleteHistory: async (data, callBack) => {
         await pool.request()
-            .input('uid_user', mssql.sql.VarChar, uid_user)
-            .query('delete from HistoryReadStory where uid_user = @uid_user',
+            .input('uid_user', mssql.sql.VarChar, data.uid_user)
+            .input('id_story', mssql.sql.VarChar, data.id_story)
+            .query('delete from HistoryReadStory where uid_user = @uid_user and id_story = @id_story',
                 (error, results, fields) => {
                     if (error) {
                         callBack(error);
