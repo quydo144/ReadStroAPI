@@ -2,7 +2,8 @@ const {
     createHistory,
     getHistory,
     updateHistory,
-    deleteHistory
+    deleteHistory,
+    getHistoryDetail
 } = require("./service.js");
 
 module.exports = {
@@ -25,6 +26,25 @@ module.exports = {
     getHistory: (req, res) => {
         const uid_user = req.params.uid_user;
         getHistory(uid_user, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (!results) {
+                return res.json({
+                    success: 0,
+                    message: "Không tìm thấy"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results
+            });
+        });
+    },
+
+    getHistoryDetail: (req, res) => {
+        getHistoryDetail(req.body, (err, results) => {
             if (err) {
                 console.log(err);
                 return;

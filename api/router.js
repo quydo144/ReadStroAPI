@@ -10,10 +10,12 @@ const {
   createHistory,
   updateHistory,
   deleteHistory,
-  getHistory
+  getHistory,
+  getHistoryDetail
 } = require("./controller.js");
 
 router.post("/", createHistory)
+router.post("/detail", getHistoryDetail)
 router.get("/uid_user=:uid_user", getHistory)
 router.patch("/", updateHistory)
 router.delete("/", deleteHistory)

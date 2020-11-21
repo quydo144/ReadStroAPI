@@ -61,5 +61,19 @@ module.exports = {
                     return callBack(null, results.recordset[0]);
                 }
             );
+    },
+
+    getHistoryDetail: async (body, callBack) => {
+        await pool.request()
+            .input('uid_user', mssql.sql.VarChar, body.uid_user)
+            .input('id_story', mssql.sql.VarChar, body.id_story)
+            .query("select * from HistoryReadStory where uid_user = @uid_user and id_story = @id_story",
+                (error, results, fields) => {
+                    if (error) {
+                        callBack(error);
+                    }
+                    return callBack(null, results.recordset[0]);
+                }
+            );
     }
 };
