@@ -6,8 +6,7 @@ module.exports = {
     deleteHistory: async (data, callBack) => {
         await pool.request()
             .input('uid_user', mssql.sql.VarChar, data.uid_user)
-            .input('id_story', mssql.sql.VarChar, data.id_story)
-            .query('delete from HistoryReadStory where uid_user = @uid_user and id_story = @id_story',
+            .query('delete from HistoryReadStory where uid_user = @uid_user',
                 (error, results, fields) => {
                     if (error) {
                         callBack(error);
