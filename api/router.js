@@ -18,5 +18,5 @@ router.post("/", createHistory)
 router.post("/detail", getHistoryDetail)
 router.get("/uid_user=:uid_user", getHistory)
 router.patch("/", updateHistory)
-router.delete("/", deleteHistory)
+router.post("/delete", deleteHistory)
 module.exports = router;
